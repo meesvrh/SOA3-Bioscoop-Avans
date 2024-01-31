@@ -28,7 +28,7 @@ namespace Domain.Models
 
         public string toString()
         {
-            return "Movie: " + this.title;
-        }   
+            return "Movie |-| Title: " + this.title;
+        }
     }
 }

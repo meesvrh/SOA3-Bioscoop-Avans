@@ -23,7 +23,7 @@ namespace Domain.Models
 
         public Boolean isPremiumTicket()
         {
-            return this.isPremium;
+            return isPremium;
         }
 
         public double getPrice()
@@ -33,7 +33,7 @@ namespace Domain.Models
 
         public string toString()
         {
-            return "Ticket: " + this.rowNr + " - " + this.seatNr;
+            return "Ticket |-| Seat: r" + rowNr + " nr" + seatNr + " - Premium: " + isPremium;
         }
     }
 }

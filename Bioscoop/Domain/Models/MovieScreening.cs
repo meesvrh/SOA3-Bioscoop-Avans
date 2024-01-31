@@ -22,12 +22,12 @@ namespace Domain.Models
 
         public double getPricePerSeat()
         {
-            return this.pricePerSeat;
+            return pricePerSeat;
         }
 
         public string toString()
         {
-            return "MovieScreening: " + this.dateAndTime + " - " + this.pricePerSeat;
+            return "Screening |-| Date: " + dateAndTime.ToString() + " - Price per seat: " + pricePerSeat;
         }
     }
 }
