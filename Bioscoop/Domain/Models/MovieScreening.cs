@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,26 +9,20 @@ namespace Domain.Models
 {
     public class MovieScreening
     {
-        private DateTime dateAndTime;
-        private double pricePerSeat;
-        private List<MovieTicket>? movieTickets;
-        private Movie movie;
+        public Movie Movie { get; }
+        public double PricePerSeat { get; }
+        public DateTime DateAndTime { get; }
 
         public MovieScreening(Movie movie, DateTime dateAndTime, double pricePerSeat)
         {
-            this.movie = movie;
-            this.dateAndTime = dateAndTime;
-            this.pricePerSeat = pricePerSeat;
+            Movie = movie;
+            DateAndTime = dateAndTime;
+            PricePerSeat = pricePerSeat;
         }
-
-        public double getPricePerSeat()
-        {
-            return pricePerSeat;
-        }
-
+        
         public string toString()
         {
-            return "Screening |-| Date: " + dateAndTime.ToString() + " - Price per seat: " + pricePerSeat;
+            return "Screening |-| Date: " + DateAndTime.ToString() + " - Price per seat: " + PricePerSeat;
         }
     }
 }

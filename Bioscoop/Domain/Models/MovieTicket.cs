@@ -8,32 +8,24 @@ namespace Domain.Models
 {
     public class MovieTicket
     {
-        private int rowNr;
-        private int seatNr;
-        private Boolean isPremium;
-        private MovieScreening movieScreening;
+        public int RowNr { get; }
+        public int SeatNr { get; }
+        public Boolean IsPremium { get; }
+        public Boolean IsStudent { get; }
+        public MovieScreening MovieScreening { get; }
 
-        public MovieTicket(MovieScreening movieScreening, Boolean isPremiumReservation, int seatRow, int seatNr)
+        public MovieTicket(MovieScreening movieScreening, Boolean isPremiumReservation, Boolean isStudent, int seatRow, int seatNr)
         {
-            this.isPremium = isPremiumReservation;
-            this.rowNr = seatRow;
-            this.seatNr = seatNr;
-            this.movieScreening = movieScreening;
-        }
-
-        public Boolean isPremiumTicket()
-        {
-            return isPremium;
-        }
-
-        public double getPrice()
-        {
-            return 0.2;
+            RowNr = seatRow;
+            SeatNr = seatNr;
+            IsPremium = isPremiumReservation;
+            MovieScreening = movieScreening;
+            IsStudent = isStudent;
         }
 
         public string toString()
         {
-            return "Ticket |-| Seat: r" + rowNr + " nr" + seatNr + " - Premium: " + isPremium;
+            return "Ticket |-| Seat: r" + RowNr + " nr" + SeatNr + " - Premium: " + IsPremium + " - Student: " + IsStudent;
         }
     }
 }

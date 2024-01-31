@@ -1,0 +1,84 @@
+{
+  "orderNr": 1,
+  "totalPrice": 38.0,
+  "tickets": [
+    {
+      "RowNr": 1,
+      "SeatNr": 1,
+      "IsPremium": true,
+      "IsStudent": false,
+      "MovieScreening": {
+        "Movie": {
+          "Title": "The Matrix"
+        },
+        "PricePerSeat": 10.0,
+        "DateAndTime": "2024-02-01T00:32:32.1916769+01:00"
+      }
+    },
+    {
+      "RowNr": 1,
+      "SeatNr": 4,
+      "IsPremium": false,
+      "IsStudent": true,
+      "MovieScreening": {
+        "Movie": {
+          "Title": "The Matrix"
+        },
+        "PricePerSeat": 10.0,
+        "DateAndTime": "2024-02-01T00:32:32.1916769+01:00"
+      }
+    },
+    {
+      "RowNr": 1,
+      "SeatNr": 2,
+      "IsPremium": true,
+      "IsStudent": false,
+      "MovieScreening": {
+        "Movie": {
+          "Title": "The Matrix"
+        },
+        "PricePerSeat": 10.0,
+        "DateAndTime": "2024-02-01T00:32:32.1916769+01:00"
+      }
+    },
+    {
+      "RowNr": 1,
+      "SeatNr": 5,
+      "IsPremium": false,
+      "IsStudent": true,
+      "MovieScreening": {
+        "Movie": {
+          "Title": "The Matrix"
+        },
+        "PricePerSeat": 10.0,
+        "DateAndTime": "2024-02-01T00:32:32.1916769+01:00"
+      }
+    },
+    {
+      "RowNr": 1,
+      "SeatNr": 3,
+      "IsPremium": true,
+      "IsStudent": true,
+      "MovieScreening": {
+        "Movie": {
+          "Title": "The Matrix"
+        },
+        "PricePerSeat": 10.0,
+        "DateAndTime": "2024-02-01T00:32:32.1916769+01:00"
+      }
+    },
+    {
+      "RowNr": 1,
+      "SeatNr": 6,
+      "IsPremium": false,
+      "IsStudent": true,
+      "MovieScreening": {
+        "Movie": {
+          "Title": "The Matrix"
+        },
+        "PricePerSeat": 10.0,
+        "DateAndTime": "2024-02-01T00:32:32.1916769+01:00"
+      }
+    }
+  ]
+}

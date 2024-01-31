@@ -8,12 +8,12 @@ namespace Domain.Models
 {
     public class Movie
     {
-        private string title;
+        public string Title { get; }
         private List<MovieScreening>? movieScreenings;
 
         public Movie(string title)
         {
-            this.title = title;
+            Title = title;
         }
 
         public void addScreening(MovieScreening screening)
@@ -28,7 +28,7 @@ namespace Domain.Models
 
         public string toString()
         {
-            return "Movie |-| Title: " + this.title;
+            return "Movie |-| Title: " + Title;
         }
     }
 }

@@ -17,3 +17,4 @@ C:\Dev\SOA3-Avans\Bioscoop\Bioscoop\bin\Debug\net6.0\Domain.dll
 C:\Dev\SOA3-Avans\Bioscoop\Bioscoop\bin\Debug\net6.0\Domain.pdb
 C:\Dev\SOA3-Avans\Bioscoop\Bioscoop\obj\Debug\net6.0\Bioscoop.csproj.AssemblyReference.cache
 C:\Dev\SOA3-Avans\Bioscoop\Bioscoop\obj\Debug\net6.0\Bioscoop.csproj.CopyComplete
+C:\Dev\SOA3-Avans\Bioscoop\Bioscoop\bin\Debug\net6.0\Newtonsoft.Json.dll

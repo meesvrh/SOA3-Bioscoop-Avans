@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using static Domain.Enums;
 
 namespace Domain.Models
@@ -7,53 +9,56 @@ namespace Domain.Models
     public class Order
     {
         private int orderNr;
-        private Boolean isStudentOrder;
         private List<MovieTicket>? movieTickets;
 
-        public Order(int orderNr, Boolean isStudentOrder)
+        public Order(int orderNr)
         {
             this.orderNr = orderNr;
-            this.isStudentOrder = isStudentOrder;
         }
 
         public int getOrderNr()
         {
-            return this.orderNr;
+            return orderNr;
         }
 
         public void addSeatReservation(MovieTicket movieTicket)
         {
-            if (this.movieTickets == null)
+            if (movieTickets == null)
             {
-                this.movieTickets = new List<MovieTicket>();
+                movieTickets = new List<MovieTicket>();
             }
 
-            this.movieTickets.Add(movieTicket);
-        }
-
-        public void addSeatReservations(List<MovieTicket> movieTickets)
-        {
-            if (this.movieTickets == null)
-            {
-                this.movieTickets = new List<MovieTicket>();
-            }
-
-            this.movieTickets.AddRange(movieTickets);
+            movieTickets.Add(movieTicket);
         }
 
         public double calculatePrice()
         {
             var totalPrice = 0.0;
 
-            if (this.movieTickets != null)
+            if (movieTickets == null) return totalPrice;
+
+            for (int i = 0; i < movieTickets.Count; i++)
             {
-                for (global::System.Int32 i = 0; i < this.movieTickets.Count; i++)
+                var movieTicket = movieTickets[i];
+
+                // Each 2nd ticket will be free if the order is for students or its a day of the week.
+                if ((i % 2 != 0) && (movieTicket.IsStudent || isDayOfTheWeek(movieTicket.MovieScreening.DateAndTime))) continue;
+
+                var seatPrice = movieTicket.MovieScreening.PricePerSeat;
+
+                // Premium price on top of the seatPrice according to being a student or not.
+                if (movieTicket.IsPremium)
                 {
-                    if (i % 2 != 0)
-                    {
-                        // Elk 2e ticket is gratis voor studenten (elke dag van de week) of als het een voorstelling betreft op een doordeweekse dag (ma/di/wo/do) voor iedereen. 
-                    }
+                    seatPrice = movieTicket.IsStudent ? (seatPrice + 2.0) : (seatPrice + 3.0);
                 }
+
+                // 10% discount on the seatPrice if the movie is in the weekend, and the order is not for students, and the order has 6 or more tickets.
+                if (!isDayOfTheWeek(movieTicket.MovieScreening.DateAndTime) && !movieTicket.IsStudent && movieTickets.Count >= 6) 
+                {
+                    seatPrice *= 0.9;
+                }
+
+                totalPrice += seatPrice;
             }
 
             return totalPrice;
@@ -61,23 +66,23 @@ namespace Domain.Models
 
         public void export(TicketExportFormat exportFormat)
         {
-            var order = new
+            var export = new
             {
                 orderNr = this.orderNr,
-                isStudentOrder = this.isStudentOrder,
+                totalPrice = calculatePrice(),
+                tickets = movieTickets,
             };
 
-            if (exportFormat == TicketExportFormat.JSON)
-            {
-                string file = "C:\\Dev\\SOA3-Avans\\order.json";
-                string json = JsonSerializer.Serialize(order);
-                File.WriteAllText(file, json);
-            }
-            else
-            {
-                Console.WriteLine(order.ToString());
-            }
+            string dir = "C:\\Dev\\SOA3-Avans\\";
 
+            string file = (dir + "order-" + orderNr) + (exportFormat == TicketExportFormat.JSON ? ".json" : ".txt");
+            string json = JsonConvert.SerializeObject(export, Formatting.Indented);
+            File.WriteAllText(file, json);
+        }
+        
+        private Boolean isDayOfTheWeek(DateTime date)
+        {
+            return date.DayOfWeek == DayOfWeek.Monday || date.DayOfWeek == DayOfWeek.Tuesday || date.DayOfWeek == DayOfWeek.Wednesday || date.DayOfWeek == DayOfWeek.Thursday;
         }
     }
 }

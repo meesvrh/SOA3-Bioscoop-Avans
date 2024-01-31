@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "HeL32H/hEyMZY/D47gXu70YsHLCzg7yiM1j52dmIso5lb+r7Tceh2S5DIsUoDFOXzQfFJSoBGSiux3VGcRGSLw==",
+  "dgSpecHash": "6dv1IA3uSX7rPG58guU4W5ivsGVfkp0vgIBSsgrnI1kSlTvEI17/ZV3IwBl1TMn8bgrnhtbDtDs/jnDQTLOvIQ==",
   "success": true,
   "projectFilePath": "C:\\Dev\\SOA3-Avans\\Bioscoop\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Mees\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
