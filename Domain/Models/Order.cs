@@ -73,7 +73,7 @@ namespace Domain.Models
                 tickets = movieTickets,
             };
 
-            string dir = "C:\\Dev\\SOA3-Avans\\";
+            string dir = "C:\\Dev\\Bioscoop\\";
 
             string file = (dir + "order-" + orderNr) + (exportFormat == TicketExportFormat.JSON ? ".json" : ".txt");
             string json = JsonConvert.SerializeObject(export, Formatting.Indented);
