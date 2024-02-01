@@ -70,6 +70,7 @@ namespace Domain.Tests
         [Fact]
         public void PremiumMovieTicketPriceShouldBeDefaultSeatPricePlusPremiumPrice()
         {
+            // Arrange
             Order order1 = new(1);
             order1.addSeatReservation(premiumTicketWeek1);
 
@@ -91,11 +92,11 @@ namespace Domain.Tests
         [Fact]
         public void EverySecondTicketShouldBeFreeForStudentsOrIfScreeningIsAtWeekday()
         {   
-            Order orderStudent = new(2);
+            Order orderStudent = new(1);
             orderStudent.addSeatReservation(premiumStudentTicketWeek1);
             orderStudent.addSeatReservation(normalStudentTicketWeekend1);
 
-            Order orderNonStudentInWeek = new(3);
+            Order orderNonStudentInWeek = new(2);
             orderNonStudentInWeek.addSeatReservation(normalTicketWeek1);
             orderNonStudentInWeek.addSeatReservation(premiumTicketWeek1);
 
@@ -109,6 +110,25 @@ namespace Domain.Tests
                 Assert.Equal(screeningWeek.PricePerSeat + premiumExtraStudent, priceStudent);
                 Assert.Equal(screeningWeek.PricePerSeat, priceNonStudentInWeek);
             });
+        }
+
+        [Fact]
+        public void TenPercentDiscountOnTicketPriceIfMovieIsInWeekendForNonStudentAndOrderHasSixOrMoreTicketsNoMatterPremium()
+        {
+            // Arrange
+            Order order = new(1);
+            order.addSeatReservation(premiumTicketWeekend1); // 11.7
+            order.addSeatReservation(normalTicketWeekend1); // 9
+            order.addSeatReservation(normalStudentTicketWeekend1); // 10
+            order.addSeatReservation(premiumStudentTicketWeekend1); // Free (2nd ticket)
+            order.addSeatReservation(normalTicketWeek1); // 10
+            order.addSeatReservation(premiumTicketWeek1); // Free (Free 2nd ticket)
+            
+            // Act
+            var price = order.calculatePrice();
+
+            // Assert
+            Assert.Equal(40.7, price);
         }
     }
 }

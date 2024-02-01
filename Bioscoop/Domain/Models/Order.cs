@@ -52,7 +52,7 @@ namespace Domain.Models
                     seatPrice = movieTicket.IsStudent ? (seatPrice + 2.0) : (seatPrice + 3.0);
                 }
 
-                // 10% discount on the seatPrice if the movie is in the weekend, and the order is not for students, and the order has 6 or more tickets.
+                // 10% discount on the seatPrice if the movie is in the weekend, and the ticket is not for a student, and the order has 6 or more tickets.
                 if (!isDayOfTheWeek(movieTicket.MovieScreening.DateAndTime) && !movieTicket.IsStudent && movieTickets.Count >= 6) 
                 {
                     seatPrice *= 0.9;
